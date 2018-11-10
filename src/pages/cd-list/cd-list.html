@@ -17,5 +17,12 @@
 
 
 <ion-content padding>
-
+    <ion-list *ngIf="CDs">
+        <button  [color]="cd.isPreter?'secondary_light':'danger_light'" 
+        ion-item *ngFor="let cd of CDs; let i = index" (click)="showCD(i)"  >
+          <ion-icon name="power" [color]="cd.isPreter?'secondary':'danger'" ></ion-icon>
+          {{ cd.name}}
+        </button>
+      </ion-list>
+    
 </ion-content>

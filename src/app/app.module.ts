@@ -13,6 +13,7 @@ import { LendBookPage } from '../pages/book-list/lend-book/lend-book';
 import { LendCdPage } from '../pages/cd-list/lend-cd/lend-cd';
 import { SettingsPage } from '../pages/settings/settings';
 import { TabsPage } from '../pages/tabs/tabs';
+import { dataService } from '../services/data.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { TabsPage } from '../pages/tabs/tabs';
   providers: [
     StatusBar,
     SplashScreen,
+    dataService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

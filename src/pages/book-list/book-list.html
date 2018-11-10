@@ -7,9 +7,9 @@
 <ion-header>
 
   <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>BookListPage</ion-title>
   </ion-navbar>
 
@@ -17,5 +17,12 @@
 
 
 <ion-content padding>
+
+  <ion-list *ngIf="books">
+    <button ion-item  [color]="book.isPreter?'secondary_light':'danger_light'" 
+    *ngFor="let book of books; let i = index" (click)="showBook(i)">
+    <ion-icon name="power" [color]="book.isPreter?'secondary':'danger'" ></ion-icon>
+    {{ book.name}} </button>
+  </ion-list>
 
 </ion-content>

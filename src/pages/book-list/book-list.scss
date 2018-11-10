@@ -1,3 +1,8 @@
 page-book-list {
-
+    .secondary_light{
+        background: color($colors,secondary_light)
+    }
+    .danger_light{
+        background: color($colors,danger_light)
+    }
 }

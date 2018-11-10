@@ -7,6 +7,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button right (click)="dismiss()">
+      x
+    </button>
     <ion-title>LendBookPage</ion-title>
   </ion-navbar>
 
@@ -14,5 +17,28 @@
 
 
 <ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      {{book.name}}
+    </ion-card-header>
+    <ion-card-content>
+      Description: {{book.description}}
+
+      <ion-grid no-padding>
+        <ion-row>
+
+          <ion-col col-6  >
+            <button ion-button full color="secondary" [disabled]=" book.isPreter" (click)="preter()">Preter</button>
+          </ion-col>
+          <ion-col col-6  >
+            <button ion-button full color="danger"  [disabled]="!book.isPreter" (click)="preter()">Rendre</button>
+          </ion-col>
+          
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

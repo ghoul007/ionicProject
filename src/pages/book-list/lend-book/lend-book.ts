@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { dataService } from '../../../services/data.service';
 
 /**
  * Generated class for the LendBookPage page.
@@ -13,13 +14,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-lend-book',
   templateUrl: 'lend-book.html',
 })
-export class LendBookPage {
+export class LendBookPage implements OnInit {
+  book: any;
+  index: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private dataService: dataService,
+    private view: ViewController
+  ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LendBookPage');
+
+  ngOnInit() {
+    this.index = this.navParams.get('index')
+    this.book = this.dataService.listBook[this.index]
+  }
+
+  preter() {
+    this.dataService.preter(this.index, 'book');
+  }
+
+
+
+  dismiss() {
+    this.view.dismiss()
   }
 
 }

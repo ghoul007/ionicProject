@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { dataService } from '../../../services/data.service';
 
 /**
  * Generated class for the LendCdPage page.
@@ -14,12 +15,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'lend-cd.html',
 })
 export class LendCdPage {
+  Cd: any;
+  index: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private dataService: dataService,
+    private view: ViewController
+  ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LendCdPage');
+
+  ngOnInit() {
+    this.index = this.navParams.get('index')
+    this.Cd = this.dataService.listCD[this.index]
+  }
+
+
+  preter() {
+    this.dataService.preter(this.index, 'cd');
+  }
+
+
+  dismiss() {
+    this.view.dismiss()
   }
 
 }
