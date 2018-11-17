@@ -14,6 +14,9 @@ import { LendCdPage } from '../pages/cd-list/lend-cd/lend-cd';
 import { SettingsPage } from '../pages/settings/settings';
 import { TabsPage } from '../pages/tabs/tabs';
 import { dataService } from '../services/data.service';
+import { AuthPage } from '../pages/auth/auth';
+import { AuthService } from '../services/auth.service';
+import { IonicStorageModule } from "@ionic/storage";
 
 @NgModule({
   declarations: [
@@ -24,10 +27,12 @@ import { dataService } from '../services/data.service';
     LendBookPage,
     LendCdPage,
     SettingsPage,
-    TabsPage
+    TabsPage,
+    AuthPage
   ],
   imports: [
     BrowserModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -39,12 +44,14 @@ import { dataService } from '../services/data.service';
     LendBookPage,
     LendCdPage,
     SettingsPage,
-    TabsPage
+    TabsPage,
+    AuthPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     dataService,
+    AuthService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

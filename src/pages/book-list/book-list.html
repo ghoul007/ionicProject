@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>BookListPage</ion-title>
+    <ion-title>Book List</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -19,10 +19,15 @@
 <ion-content padding>
 
   <ion-list *ngIf="books">
-    <button ion-item  [color]="book.isPreter?'secondary_light':'danger_light'" 
-    *ngFor="let book of books; let i = index" (click)="showBook(i)">
-    <ion-icon name="power" [color]="book.isPreter?'secondary':'danger'" ></ion-icon>
-    {{ book.name}} </button>
+    <button ion-item [color]="book.isPreter?'secondary_light':'danger_light'" *ngFor="let book of books; let i = index" (click)="showBook(i)">
+      <ion-icon name="power" [color]="book.isPreter?'secondary':'danger'"></ion-icon>
+      {{ book.name}}
+      <span style="float: right" *ngIf="book.person">
+        <ion-icon name="person"></ion-icon>
+         - {{book.person}}
+      </span>
+
+    </button>
   </ion-list>
 
 </ion-content>

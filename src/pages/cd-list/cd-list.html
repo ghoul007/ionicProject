@@ -10,7 +10,7 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>CdListPage</ion-title>
+    <ion-title>CD List</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,7 +21,11 @@
         <button  [color]="cd.isPreter?'secondary_light':'danger_light'" 
         ion-item *ngFor="let cd of CDs; let i = index" (click)="showCD(i)"  >
           <ion-icon name="power" [color]="cd.isPreter?'secondary':'danger'" ></ion-icon>
-          {{ cd.name}}
+          {{ cd.name}}   
+          <span  style="float: right" *ngIf="cd.person">
+            <ion-icon name="person"></ion-icon>
+            {{cd.person}}
+          </span>
         </button>
       </ion-list>
     

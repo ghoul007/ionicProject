@@ -5,10 +5,14 @@
     </ion-toolbar>
   </ion-header>
 
+
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+      <button [ngClass]="{'hide':!p.isAuth,'show':p.isAuth}" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <ion-icon [name]="p.icon"></ion-icon>  {{p.title}}
+      </button>
+      <button [ngClass]="{'hide':!isAuth,'show':isAuth}" menuClose ion-item  (click)="logout()">
+       <ion-icon name="log-out"></ion-icon>  logout
       </button>
     </ion-list>
   </ion-content>

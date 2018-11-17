@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Connexion</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="authForm">
+
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button full *ngIf="mode" [disabled]="authForm.invalid" (click)="soumettre()">Connect</button>
+    <button ion-button full *ngIf="!mode" [disabled]="authForm.invalid" (click)="soumettre()">Inscrire</button>
+    <span ion-text color="danger">{{errorMessage}}</span>
+  </form>
+
+
+</ion-content>

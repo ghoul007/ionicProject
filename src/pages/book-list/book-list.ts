@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { dataService } from '../../services/data.service';
 import { LendBookPage } from './lend-book/lend-book';
+import { Subscription } from 'rxjs/Subscription';
 
 /**
  * Generated class for the BookListPage page.
@@ -15,8 +16,9 @@ import { LendBookPage } from './lend-book/lend-book';
   selector: 'page-book-list',
   templateUrl: 'book-list.html',
 })
-export class BookListPage {
+export class BookListPage implements OnInit, OnDestroy {
   books: any[];
+  bookSubscription: Subscription
 
   constructor(
     public navCtrl: NavController,
@@ -27,16 +29,23 @@ export class BookListPage {
   }
 
 
-  ionViewWillEnter() {
-    this.books = this.dataServce.listBook.slice();
+  // ionViewWillEnter() {
+  ngOnInit() {
+    this.bookSubscription = this.dataServce.listBook$.subscribe(
+      (res) => {
+        this.books = res;
+      }
+    )
+    this.dataServce.emitBook();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BookListPage');
+
+  showBook(index) {
+    this.modal.create(LendBookPage, { index }).present()
   }
 
-  showBook(index){
-    this.modal.create(LendBookPage, {index}).present()
+  ngOnDestroy() {
+    this.bookSubscription.unsubscribe();
   }
 
 }
